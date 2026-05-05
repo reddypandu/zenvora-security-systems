@@ -17,7 +17,7 @@ const About = () => {
           transition={{ duration: 0.8 }}
           className="relative"
         >
-          <div className="aspect-[4/5] glass-morphism rounded-3xl overflow-hidden relative z-10 border-2 border-white/5 shadow-2xl">
+          <div className=" glass-morphism rounded-3xl overflow-hidden relative z-10 border-2 border-white/5 shadow-2xl">
             <img
               src={AboutImg}
               alt="Security Expert"
