@@ -5,12 +5,12 @@ import heroImage from '../assets/hero.png';
 
 const Hero = () => {
   return (
-    <section id="home" className="relative min-h-screen flex items-center pt-20 overflow-hidden">
+    <section id="home" className="relative min-h-screen flex items-center overflow-hidden">
       {/* Background Decor */}
       <div className="absolute top-0 left-0 w-full h-full -z-10">
-        <img 
-          src={heroImage} 
-          alt="Security Technology" 
+        <img
+          src={heroImage}
+          alt="Security Technology"
           className="absolute top-0 left-0 w-full h-full object-cover opacity-10"
         />
         {/* <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-b to-bg-dark"></div> */}
@@ -18,8 +18,8 @@ const Hero = () => {
         {/* <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-accent opacity-20 rounded-full blur-[120px]"></div> */}
       </div>
 
-      <div className="container grid grid-cols-1 md-grid-cols-2 gap-12 items-center">
-        <motion.div 
+      <div className="container grid grid-cols-1 md-grid-cols-2 gap-12 items-start">
+        <motion.div
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
@@ -32,7 +32,7 @@ const Hero = () => {
           <p className="text-lg text-text-muted mb-8 max-w-xl">
             We provide state-of-the-art security systems, from AI-powered CCTV to advanced biometric access control. Protect what matters most with Zenvora.
           </p>
-          
+
           <div className="flex flex-col sm-flex-row gap-4 mb-10">
             <button className="btn btn-primary gap-2">
               Explore Services <ArrowRight size={18} />
@@ -48,7 +48,7 @@ const Hero = () => {
               { label: 'Support', value: '24/7' },
               { label: 'Satisfaction', value: '99%' },
             ].map((stat, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -62,7 +62,7 @@ const Hero = () => {
           </div>
         </motion.div>
 
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -91,9 +91,9 @@ const Hero = () => {
               <button type="submit" className="btn btn-primary w-full mt-2">Request Quote</button>
             </form>
           </div>
-          
+
           {/* Floating badges */}
-          <motion.div 
+          <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             className="absolute -top-6 -right-6 glass-morphism p-4 rounded-xl flex items-center gap-3 md-flex shadow-lg"
