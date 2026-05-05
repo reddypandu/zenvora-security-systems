@@ -7,10 +7,15 @@ import {
   Camera, Fingerprint, Network, Plane,
   Sun, Settings, Monitor, ShieldAlert, ArrowRight
 } from 'lucide-react';
-import cctvImg      from '../assets/service_cctv.png';
+import cctvImg from '../assets/service_cctv.png';
 import biometricImg from '../assets/service_biometric.png';
 import networkingImg from '../assets/service_networking.png';
-import droneImg     from '../assets/service_drone.png';
+import droneImg from '../assets/service_drone.png';
+import solarImg from '../assets/service_solar_cctv.png';
+import maintenanceImg from '../assets/service_maintenance.png';
+import computerImg from '../assets/service_computer_it.png';
+import wirelessImg from '../assets/service_wireless.png';
+
 
 const services = [
   {
@@ -50,7 +55,7 @@ const services = [
     title: 'Solar CCTV',
     desc: 'Eco-friendly, self-powered security cameras for remote locations and farmsteads.',
     icon: <Sun size={32} />,
-    image: null,
+    image: solarImg,
     color: 'var(--secondary)',
   },
   {
@@ -58,7 +63,7 @@ const services = [
     title: 'Annual Maintenance',
     desc: 'Reliable AMC services to ensure your security infrastructure is always operational.',
     icon: <Settings size={32} />,
-    image: null,
+    image: maintenanceImg,
     color: 'var(--accent)',
   },
   {
@@ -66,7 +71,7 @@ const services = [
     title: 'Computer & IT Sales',
     desc: 'Premium hardware sales, including servers, workstations, and security peripherals.',
     icon: <Monitor size={32} />,
-    image: null,
+    image: computerImg,
     color: 'var(--secondary)',
   },
   {
@@ -74,7 +79,7 @@ const services = [
     title: 'Wireless Security',
     desc: 'Next-gen wireless alarm systems and sensors for hassle-free installation.',
     icon: <ShieldAlert size={32} />,
-    image: null,
+    image: wirelessImg,
     color: 'var(--accent)',
   },
 ];

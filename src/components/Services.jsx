@@ -1,85 +1,135 @@
 import React from 'react';
-import {
-  Camera, Fingerprint, Network, Plane,
-  Sun, Settings, Monitor, ShieldAlert
-} from 'lucide-react';
+import { Camera, Fingerprint, Network } from 'lucide-react';
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import cctvImg      from '../assets/service_cctv.png';
+import biometricImg from '../assets/service_biometric.png';
+import networkingImg from '../assets/service_networking.png';
 
-const services = [
-  { slug: 'cctv-installation',    title: 'CCTV Installation',    desc: 'HD surveillance cameras with AI motion detection & remote monitoring.', iconName: 'Camera',      tag: 'Popular' },
-  { slug: 'biometric-access',     title: 'Biometric Access',     desc: 'Fingerprint & facial recognition systems for secure entry control.',    iconName: 'Fingerprint', tag: null },
-  { slug: 'networking-solutions', title: 'Networking Solutions',  desc: 'Enterprise Wi-Fi 6, structured cabling & secure VPN setups.',           iconName: 'Network',     tag: null },
-  { slug: 'drone-surveillance',   title: 'Drone Surveillance',   desc: 'Autonomous drones for large perimeter monitoring & aerial inspection.',  iconName: 'Plane',       tag: 'New' },
-  { slug: 'solar-cctv',          title: 'Solar CCTV',           desc: 'Eco-friendly, self-powered cameras for remote & off-grid locations.',    iconName: 'Sun',         tag: null },
-  { slug: 'annual-maintenance',   title: 'Annual Maintenance',   desc: 'AMC plans to keep your entire security infrastructure operational.',     iconName: 'Settings',    tag: null },
-  { slug: 'computer-it-sales',    title: 'Computer & IT Sales',  desc: 'Premium NVR servers, workstations, and security peripherals.',           iconName: 'Monitor',     tag: null },
-  { slug: 'wireless-security',    title: 'Wireless Security',    desc: 'Smart wireless alarm systems & sensors with app-based control.',         iconName: 'ShieldAlert', tag: null },
+// Show only 3 featured services on the homepage
+const featuredServices = [
+  {
+    slug: 'cctv-installation',
+    title: 'CCTV Installation',
+    desc: 'High-definition surveillance cameras with AI motion detection and remote monitoring.',
+    icon: <Camera size={32} />,
+    image: cctvImg,
+    color: 'var(--secondary)',
+  },
+  {
+    slug: 'biometric-access',
+    title: 'Biometric Access',
+    desc: 'Advanced fingerprint and facial recognition systems for secure entry management.',
+    icon: <Fingerprint size={32} />,
+    image: biometricImg,
+    color: 'var(--accent)',
+  },
+  {
+    slug: 'networking-solutions',
+    title: 'Networking Solutions',
+    desc: 'Enterprise-grade networking, Wi-Fi 6 setup, and structured cabling for businesses.',
+    icon: <Network size={32} />,
+    image: networkingImg,
+    color: 'var(--secondary)',
+  },
 ];
-
-const iconMap = {
-  Camera:      <Camera className="text-secondary" size={32} />,
-  Fingerprint: <Fingerprint className="text-accent" size={32} />,
-  Network:     <Network className="text-secondary" size={32} />,
-  Plane:       <Plane className="text-accent" size={32} />,
-  Sun:         <Sun className="text-secondary" size={32} />,
-  Settings:    <Settings className="text-accent" size={32} />,
-  Monitor:     <Monitor className="text-secondary" size={32} />,
-  ShieldAlert: <ShieldAlert className="text-accent" size={32} />,
-};
-
-const ServiceCard = ({ service, index }) => (
-  <motion.div
-    initial={{ opacity: 0, y: 30 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true }}
-    transition={{ duration: 0.5, delay: index * 0.1 }}
-    className="glass-morphism p-8 rounded-2xl flex flex-col gap-4 group hover:border-secondary transition-all duration-500 relative overflow-hidden"
-  >
-    {service.tag && (
-      <span className="service-tag">{service.tag}</span>
-    )}
-    <div className="mb-2 p-4 bg-primary-light rounded-xl w-fit group-hover:scale-110 transition-all duration-500">
-      {iconMap[service.iconName]}
-    </div>
-    <h3 className="text-xl font-bold">{service.title}</h3>
-    <p className="text-text-muted text-sm leading-relaxed">{service.desc}</p>
-    <Link
-      to={`/services/${service.slug}`}
-      className="mt-4 text-sm font-bold flex items-center gap-2 group-hover:text-secondary transition-colors"
-    >
-      Learn More <span className="group-hover:translate-x-1 transition-transform">→</span>
-    </Link>
-  </motion.div>
-);
 
 const Services = () => (
   <section id="services" className="section-padding relative">
     <div className="container">
+      {/* Heading */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
+        style={{ textAlign: 'center', marginBottom: '3.5rem' }}
       >
         <span className="section-subtitle">Our Expertise</span>
-        <h2 className="section-title mb-12">
+        <h2 className="section-title">
           Comprehensive <span className="gradient-text">Security</span> Solutions
         </h2>
+        <p style={{ color: 'var(--text-muted)', fontSize: '1.05rem', maxWidth: '560px', margin: '1rem auto 0', lineHeight: '1.8' }}>
+          From individual homes to massive industrial complexes, we provide tailored security solutions using the world's most advanced technology.
+        </p>
       </motion.div>
 
-      <div className="grid grid-cols-1 md-grid-cols-2 lg-grid-cols-4 gap-6">
-        {services.map((service, index) => (
-          <ServiceCard key={service.slug} service={service} index={index} />
+      {/* Cards — same style as ServicesPage */}
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))', gap: '1.5rem', marginBottom: '3rem' }}>
+        {featuredServices.map((service, i) => (
+          <motion.div
+            key={service.slug}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: i * 0.1 }}
+          >
+            <Link
+              to={`/services/${service.slug}`}
+              style={{
+                display: 'flex', flexDirection: 'column', height: '100%',
+                background: 'rgba(255,255,255,0.03)',
+                border: '1px solid rgba(255,255,255,0.07)',
+                borderRadius: '1.25rem', overflow: 'hidden',
+                textDecoration: 'none', color: 'var(--text-main)',
+                transition: 'border-color 0.3s, transform 0.3s, box-shadow 0.3s',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.borderColor = 'rgba(194,0,4,0.5)';
+                e.currentTarget.style.transform = 'translateY(-6px)';
+                e.currentTarget.style.boxShadow = '0 20px 40px rgba(0,0,0,0.3)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              {/* Image banner */}
+              <div style={{ height: '200px', overflow: 'hidden', position: 'relative' }}>
+                <img
+                  src={service.image}
+                  alt={service.title}
+                  style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', transition: 'transform 0.5s' }}
+                  onMouseEnter={e => (e.target.style.transform = 'scale(1.05)')}
+                  onMouseLeave={e => (e.target.style.transform = 'scale(1)')}
+                />
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(2,6,23,0.8), transparent)' }} />
+                <div style={{
+                  position: 'absolute', top: '1rem', left: '1rem',
+                  background: 'rgba(194,0,4,0.15)', backdropFilter: 'blur(4px)',
+                  border: '1px solid rgba(194,0,4,0.3)', borderRadius: '0.6rem',
+                  padding: '0.5rem', color: service.color,
+                }}>
+                  {service.icon}
+                </div>
+              </div>
+
+              {/* Text */}
+              <div style={{ padding: '1.75rem', flex: 1, display: 'flex', flexDirection: 'column' }}>
+                <h3 style={{ fontSize: '1.25rem', fontWeight: '700', marginBottom: '0.75rem' }}>{service.title}</h3>
+                <p style={{ color: 'var(--text-muted)', lineHeight: '1.7', fontSize: '0.95rem', flex: 1 }}>{service.desc}</p>
+                <div style={{
+                  display: 'inline-flex', alignItems: 'center', gap: '0.4rem',
+                  marginTop: '1.5rem', color: 'var(--secondary)',
+                  fontWeight: '700', fontSize: '0.9rem',
+                }}>
+                  Learn More →
+                </div>
+              </div>
+            </Link>
+          </motion.div>
         ))}
       </div>
 
+      {/* View All button */}
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        className="mt-16 text-center"
+        viewport={{ once: true }}
+        style={{ textAlign: 'center' }}
       >
-        <Link to="/services" className="btn btn-outline px-10">View All Solutions</Link>
+        <Link to="/services" className="btn btn-outline px-10">View All Services</Link>
       </motion.div>
     </div>
   </section>
