@@ -2,7 +2,17 @@ import React, { useState, useEffect } from "react";
 import { Shield, Menu, X, ChevronDown } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import Logo from "../assets/logo.png";
-import { servicesData } from "../data/servicesData";
+
+const navServices = [
+  { title: 'CCTV Installation',    slug: 'cctv-installation' },
+  { title: 'Biometric Access',     slug: 'biometric-access' },
+  { title: 'Networking Solutions', slug: 'networking-solutions' },
+  { title: 'Drone Surveillance',   slug: 'drone-surveillance' },
+  { title: 'Solar CCTV',          slug: 'solar-cctv' },
+  { title: 'Annual Maintenance',   slug: 'annual-maintenance' },
+  { title: 'Computer & IT Sales',  slug: 'computer-it-sales' },
+  { title: 'Wireless Security',    slug: 'wireless-security' },
+];
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -70,12 +80,12 @@ const Navbar = () => {
                   border: '1px solid rgba(255,255,255,0.1)' 
                 }}
               >
-                {servicesData.map((service, index) => (
+                {navServices.map((service, index) => (
                   <Link 
                     key={service.slug} 
                     to={`/services/${service.slug}`} 
                     className="p-3 text-sm text-text-main hover:text-accent transition-colors"
-                    style={{ borderBottom: index < servicesData.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}
+                    style={{ borderBottom: index < navServices.length - 1 ? '1px solid rgba(255,255,255,0.05)' : 'none' }}
                     onClick={() => setDesktopServicesOpen(false)}
                   >
                     {service.title}
@@ -151,7 +161,7 @@ const Navbar = () => {
                   >
                     All Services
                   </Link>
-                  {servicesData.map(service => (
+                  {navServices.map(service => (
                     <Link 
                       key={service.slug} 
                       to={`/services/${service.slug}`} 
